@@ -25,20 +25,16 @@
         # Function to build a single host configuration
         buildHost = file:
           let 
-            name = builtins.replaceStrings [".nix"] [""] file;
-            # Import the host-specific attributes
             hostConfig = import ./hosts/${file};
           in
           # Print a message to the console during evaluation
-          builtins.trace "Building host: ${name} (arch: ${hostConfig.system})" {
+          {
             # Use the stripped name for the attribute
-            name = name;
+            name = hostConfig.hostname;
             value = nixpkgs.lib.nixosSystem {
-              system = hostConfig.system;
+              system = hostConfig.arch;
               specialArgs = {
                 meta = {
-                  hostname = name;
-                  # Pass the host config down to modules
                   node = hostConfig;
                 };
               };

@@ -4,6 +4,9 @@
 
 { config, lib, pkgs, meta, ... }:
 
+let
+  isX86 = if meta.node.arch == "x87_64-linux" then true else false;
+in
 {
   imports =
     [ # Include the results of the hardware scan.
@@ -30,7 +33,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = meta.hostname; # Define your hostname.
+  networking.hostName = meta.node.hostname; # Define your hostname.
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
@@ -51,8 +54,8 @@
   };
 
   # Conditionally enable microcode updates only on x86_64 systems
-  hardware.cpu.intel.updateMicrocode = meta.node.system == "x86_64-linux";
-  hardware.cpu.amd.updateMicrocode = meta.node.system == "x86_64-linux";
+  hardware.cpu.intel.updateMicrocode = isX86;
+  hardware.cpu.amd.updateMicrocode = isX86;
 
   # Fixes for longhorn
   # systemd.tmpfiles.rules = [
@@ -77,10 +80,10 @@
      "--disable servicelb"
      "--disable traefik"
      "--disable local-storage"
-    ] ++ (if meta.hostname == "atanas-nix-1" then [] else [
+    ] ++ (if meta.node.hostname == "atanas-nix-1" then [] else [
        "--server https://homelab-0:6443"
     ]));
-    clusterInit = (meta.hostname == "atanas-nix-1");
+    clusterInit = (meta.node.hostname == "atanas-nix-1");
   };
 
   # services.openiscsi = {
