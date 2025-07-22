@@ -17,40 +17,42 @@
   };
 
   outputs = { self, nixpkgs, home-manager, disko, ... }@inputs: {
-    nixosConfigurations = 
+    nixosConfigurations =
       let
-        # Find all .nix files in ./hosts, each representing a machine
-        hostFiles = builtins.filter (file: builtins.match ".*\\.nix" file != null) (builtins.attrNames (builtins.readDir ./hosts));
+        # Find all directories in ./hosts, each representing a machine
+        hostnames = builtins.attrNames (builtins.readDir ./hosts);
 
         # Function to build a single host configuration
-        buildHost = file:
-          let 
-            hostConfig = import ./hosts/${file};
+        buildHost = name:
+          let
+            # Import the host-specific attributes
+            node = import ./hosts/${name}/host.nix;
           in
           # Print a message to the console during evaluation
           {
-            # Use the stripped name for the attribute
-            name = hostConfig.hostname;
+            # Use the directory name for the attribute
+            name = name;
             value = nixpkgs.lib.nixosSystem {
-              system = hostConfig.arch;
+              system = node.arch;
               specialArgs = {
                 meta = {
-                  node = hostConfig;
+                  node = node;
                 };
               };
               modules = [
                 # Common modules for all hosts
                 disko.nixosModules.disko
-                ./disko.nix
+                ./modules/k3s.nix
+                ./hosts/${name}/disko.nix
                 ./config.nix
 
                 # The new, dynamic hardware configuration
-                ./hardware.nix
+                ./hosts/${name}/hardware.nix
               ];
             };
           };
       in
       # Build a configuration for each discovered hostname
-      builtins.listToAttrs (map buildHost hostFiles);
+      builtins.listToAttrs (map buildHost hostnames);
   };
 }

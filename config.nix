@@ -70,21 +70,7 @@ in
   # Configure keymap in X11
   # services.xserver.xkb.layout = "us";
   # services.xserver.xkb.options = "eurosign:e,caps:escape";
-  services.k3s = {
-    enable = true;
-    role = "server";
-    token = "alabalaKURVA";
-    extraFlags = toString ([
-     "--write-kubeconfig-mode \"0644\""
-     "--cluster-init"
-     "--disable servicelb"
-     "--disable traefik"
-     "--disable local-storage"
-    ] ++ (if meta.node.hostname == "atanas-nix-1" then [] else [
-       "--server https://homelab-0:6443"
-    ]));
-    clusterInit = (meta.node.hostname == "atanas-nix-1");
-  };
+  
 
   # services.openiscsi = {
   #   enable = true;
