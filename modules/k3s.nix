@@ -26,7 +26,7 @@
       role = "server";
       token = config.services.k3s.token;
       clusterInit = config.services.k3s.isFirst;
-      serverAddr = (if not config.services.k3s.isFirst then "https://homelab:6443" else "");
+      serverAddr = (if config.services.k3s.isFirst then "" else "https://homelab:6443");
       extraFlags = toString ([
        "--write-kubeconfig-mode \"0644\""
        "--disable servicelb"
