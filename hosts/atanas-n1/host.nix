@@ -21,7 +21,7 @@
   services.k3s = {
     isEnable = true;
     isFirst = true;
-    token = builtins.readFile ../../secrets/k3s_token
+    token = builtins.readFile ../../secrets/k3s_token;
   };
 }
 
