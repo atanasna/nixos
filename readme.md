@@ -14,7 +14,7 @@
 
 
 # Subsecuent applies should be done with
-`sudo nixos-rebuild switch --flake .#atanas-nix-1`
+`sudo nixos-rebuild switch --flake .#atanas-n1`
 
 
 

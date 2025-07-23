@@ -2,33 +2,37 @@
 
 {
   options.services.k3s = {
-    enableModule = lib.mkOption {
+    isEnable = lib.mkOption {
       type = lib.types.bool;
       default = false;
       description = "Enable k3s service for the node";
     };
 
-    tokenFile = lib.mkOption {
-      type = lib.types.path;
-      description = "File containing the k3s token";
+    isFirst = lib.mkOption {
+      type = lib.types.bool;
+      default = false;
+      description = "This should be true for the first node in the cluster that will initialize it";
+    };
+    
+    token = lib.mkOption {
+      type = lib.type.string;
+      description = "Token to be used for cluster node authentication";
     };
   };
 
-  config = lib.mkIf config.services.k3s.enableModule {
+  config = lib.mkIf config.services.k3s.isEnable {
     services.k3s = {
       enable = true;
       role = "server";
-      tokenFile = config.services.k3s.tokenFile;
+      token = config.services.k3s.token;
+      clusterInit = config.services.k3s.isFirst;
+      serverAddr = (if not config.services.k3s.isFirst then "https://homelab:6443" else "");
       extraFlags = toString ([
        "--write-kubeconfig-mode \"0644\""
-       "--cluster-init"
        "--disable servicelb"
        "--disable traefik"
        "--disable local-storage"
-      ] ++ (if config.networking.hostName == "atanas-nix-1" then [] else [
-         "--server https://homelab-0:6443"
-      ]));
-      clusterInit = (config.networking.hostName == "atanas-nix-1");
+      ]);
     };
   };
 }
