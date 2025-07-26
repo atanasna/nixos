@@ -30,8 +30,8 @@ in
   # ======
 
   # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  # boot.loader.systemd-boot.enable = true;
+  # boot.loader.efi.canTouchEfiVariables = true;
 
   # networking.hostName = inputs.base.hostname; # Define your hostname.
   # Pick only one of the below networking options.
@@ -46,11 +46,11 @@ in
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.UTF-8";
+  i18n.defaultlocale = "en_us.utf-8";
   console = {
-    font = "Lat2-Terminus16";
-    keyMap = "us";
-    #useXkbConfig = true; # use xkb.options in tty.
+    font = "lat2-terminus16";
+    keymap = "us";
+    #usexkbconfig = true; # use xkb.options in tty.
   };
 
   # Conditionally enable microcode updates only on x86_64 systems
@@ -123,13 +123,13 @@ in
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-  services.openssh.enable = true;
+  # services.openssh.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ 80 ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
-  networking.firewall.enable = false;
+  # networking.firewall.enable = false;
 
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you

@@ -20,12 +20,12 @@
     boot.loader.efi.canTouchEfiVariables = true;
 
     # Select internationalisation properties.
-    i18n.defaultlocale = "en_us.utf-8";
-    console = {
-      font = "lat2-terminus16";
-      keymap = "us";
-      #usexkbconfig = true; # use xkb.options in tty.
-    };
+    # i18n.defaultlocale = "en_us.utf-8";
+    # console = {
+    #   font = "lat2-terminus16";
+    #   keymap = "us";
+    #   #usexkbconfig = true; # use xkb.options in tty.
+    # };
 
     networking.hostName = config.mods.general.hostname; # Define your hostname.
     networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
