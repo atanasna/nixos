@@ -33,13 +33,13 @@ in
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = inputs.base.hostname; # Define your hostname.
+  # networking.hostName = inputs.base.hostname; # Define your hostname.
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+  # networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
 
   # Set your time zone.
-  time.timeZone = "Europe/Sofia";
+  # time.timeZone = "Europe/Sofia";
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";

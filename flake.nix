@@ -44,6 +44,7 @@
                 ./hosts/${name}/hardware.nix
                 ./hosts/${name}/configuration.nix
 
+                ./modules/general.nix
                 ./modules/roles/lab/worker.nix
               ];
             };
