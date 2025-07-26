@@ -2,10 +2,10 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ config, lib, pkgs, meta, ... }:
+{ config, lib, pkgs, inputs, ... }:
 
 let
-  isX86 = if meta.node.arch == "x87_64-linux" then true else false;
+  isX86 = if inputs.base.arch == "x86_64-linux" then true else false;
 in
 {
   imports =
@@ -33,7 +33,7 @@ in
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = meta.node.hostname; # Define your hostname.
+  networking.hostName = inputs.base.hostname; # Define your hostname.
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
@@ -74,7 +74,7 @@ in
 
   # services.openiscsi = {
   #   enable = true;
-  #   name = "iqn.2016-04.com.open-iscsi:${meta.hostname}";
+  #   name = "iqn.2016-04.com.open-iscsi:${spec.base.hostname}";
   # };
 
   # Enable CUPS to print documents.

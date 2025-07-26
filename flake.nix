@@ -26,28 +26,25 @@
         buildHost = name:
           let
             # Import the host-specific attributes
-            node = import ./hosts/${name}/host.nix;
+            host_inputs = import ./hosts/${name}/inputs.nix;
           in
           # Print a message to the console during evaluation
           {
             # Use the directory name for the attribute
             name = name;
             value = nixpkgs.lib.nixosSystem {
-              system = node.arch;
               specialArgs = {
-                meta = {
-                  node = node;
-                };
+                inputs = host_inputs;
               };
               modules = [
                 # Common modules for all hosts
                 disko.nixosModules.disko
-                ./modules/k3s.nix
+                ./generic.nix
                 ./hosts/${name}/disko.nix
-                ./config.nix
-
-                # The new, dynamic hardware configuration
                 ./hosts/${name}/hardware.nix
+                ./hosts/${name}/configuration.nix
+
+                ./modules/roles/lab/worker.nix
               ];
             };
           };
