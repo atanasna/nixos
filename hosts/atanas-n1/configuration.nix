@@ -5,7 +5,7 @@
     general = {
       hostname = "atanas-n1";
       arch = "aarch64-linux";
-    }
+    };
     roles.lab.worker = {
       k3s = {
         init = true;
