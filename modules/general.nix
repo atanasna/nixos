@@ -7,7 +7,7 @@
         description = "Name of the machine";
       };
       arch = lib.mkOption {
-        type = types.enum ["aarch64-linux", "x86_64-linux"];
+        type = types.enum ["aarch64-linux" "x86_64-linux"];
         default = "aarch64-linux";
         description = "CPU architecture type";
       };
