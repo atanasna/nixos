@@ -15,7 +15,7 @@
       };
       
       token = lib.mkOption {
-        type = lib.types.string;
+        type = lib.types.str;
         default = "";
         description = "Token to be used for cluster node authentication";
       };

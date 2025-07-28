@@ -3,7 +3,7 @@
   options = {
     mods.universal.system = {
       hostname = lib.mkOption {
-        type = lib.types.string;
+        type = lib.types.str;
         description = "Name of the machine";
       };
       arch = lib.mkOption {
