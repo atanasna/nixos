@@ -9,7 +9,7 @@
             name = "enp0s1";
             addresses = [
               { 
-                address = "192.168.66.11"; 
+                address = "192.168.66.12"; 
                 prefixLength = 24; 
               }
             ];
@@ -19,7 +19,7 @@
         nameservers = [ "8.8.8.8" "4.4.4.4" ];
       };
       system = {
-        hostname = "atanas-n1";
+        hostname = "atanas-n2";
         arch = "aarch64-linux";
       };
     };
@@ -33,5 +33,6 @@
     };
   };
 }
+
 
 
