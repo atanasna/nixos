@@ -18,7 +18,7 @@
                     description = "IP address";
                   };
                   
-                  prefix = lib.mkOption {
+                  prefixLength = lib.mkOption {
                     type = lib.types.int;
                     description = "Subnet prefix length (e.g., 24 for /24)";
                   };
