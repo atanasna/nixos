@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 {
   options = {
-    mods.general = {
+    mods.universal.system = {
       hostname = lib.mkOption {
         type = lib.types.string;
         description = "Name of the machine";
@@ -20,14 +20,15 @@
     boot.loader.efi.canTouchEfiVariables = true;
 
     # Select internationalisation properties.
-    # i18n.defaultlocale = "en_us.utf-8";
-    # console = {
-    #   font = "lat2-terminus16";
-    #   keymap = "us";
-    #   #usexkbconfig = true; # use xkb.options in tty.
-    # };
+    i18n.defaultLocale = "en_US.UTF-8";
+    i18n.supportedLocales = [ "en_US.UTF-8/UTF-8" "es_VE.UTF-8/UTF-8" ];
+    console = {
+      font = "lat2-terminus16";
+      keyMap = "us";
+      #usexkbconfig = true; # use xkb.options in tty.
+    };
 
-    networking.hostName = config.mods.general.hostname; # Define your hostname.
+    networking.hostName = config.mods.universal.system.hostname; # Define your hostname.
     networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
 
     time.timeZone = "Europe/Sofia";
@@ -42,5 +43,3 @@
     networking.firewall.enable = false;
   };
 }
-
-
