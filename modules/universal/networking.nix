@@ -24,7 +24,14 @@
                   };
                 };
               });
+
               description = "List of IP addresses with their prefix lengths for this interface";
+            };
+
+            useDHCP = lib.mkOption {
+              type = lib.types.bool;
+              default = false;
+              description = "Use dhcp or not";
             };
           };
         });
@@ -51,7 +58,7 @@
         name = iface.name;
         value = {
           ipv4.addresses = iface.addresses;
-          useDHCP = false;
+          useDHCP = iface.useDHCP;
         };
       }) config.mods.universal.networking.interfaces
     );
