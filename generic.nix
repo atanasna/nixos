@@ -46,12 +46,12 @@ in
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Select internationalisation properties.
-  i18n.defaultlocale = "en_us.utf-8";
-  console = {
-    font = "lat2-terminus16";
-    keymap = "us";
-    #usexkbconfig = true; # use xkb.options in tty.
-  };
+  # i18n.defaultlocale = "en_us.utf-8";
+  # console = {
+  #   font = "lat2-terminus16";
+  #   keymap = "us";
+  #   #usexkbconfig = true; # use xkb.options in tty.
+  # };
 
   # Conditionally enable microcode updates only on x86_64 systems
   hardware.cpu.intel.updateMicrocode = isX86;
