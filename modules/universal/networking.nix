@@ -51,6 +51,7 @@
         name = iface.name;
         value = {
           ipv4.addresses = iface.addresses;
+          useDHCP = false;
         };
       }) config.mods.universal.networking.interfaces
     );
