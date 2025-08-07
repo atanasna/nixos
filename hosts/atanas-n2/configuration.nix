@@ -26,7 +26,7 @@
     roles = {
       lab.worker = {
         k3s = {
-          init = true;
+          init = false;
           token = builtins.readFile ../../secrets/k3s_token;
         };
       };

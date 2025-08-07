@@ -19,6 +19,13 @@
         default = "";
         description = "Token to be used for cluster node authentication";
       };
+
+      clusterAddress = lib.mkOption {
+        type = lib.types.str;
+        default = "homelab";
+        description = "This is the FQDN of the cluster";
+      };
+
     };
   };
 
@@ -28,7 +35,7 @@
       role = "server";
       token = config.mods.services.k3s.token;
       clusterInit = config.mods.services.k3s.init;
-      serverAddr = (if config.mods.services.k3s.init then "" else "https://homelab:6443");
+      serverAddr = (if config.mods.services.k3s.init then "" else "https://${config.mods.services.k3s.clusterAddress}:6443");
       extraFlags = toString ([
        "--write-kubeconfig-mode \"0644\""
        "--disable servicelb"
