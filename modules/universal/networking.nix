@@ -65,5 +65,9 @@
     
     networking.defaultGateway = config.mods.universal.networking.gateway;
     networking.nameservers = config.mods.universal.networking.nameservers;
+
+    networking.hosts = {
+      "192.168.66.11" = ["homelab"];
+    };
   };
 }
