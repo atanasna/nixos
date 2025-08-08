@@ -30,6 +30,11 @@
   };
 
   config = lib.mkIf config.mods.services.k3s.enable {
+    services.openiscsi = {
+      enable = true;
+      name = "iqn.2020-08.org.linux-iscsi:${config.networking.hostName}";
+    };
+
     services.k3s = {
       enable = true;
       role = "server";

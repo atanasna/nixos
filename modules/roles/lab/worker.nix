@@ -28,8 +28,6 @@
       init = config.mods.roles.lab.worker.k3s.init;
       token = config.mods.roles.lab.worker.k3s.token;
     };
-
-    services.openiscsi.enable = true;
   };
 }
 
