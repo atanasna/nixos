@@ -38,7 +38,7 @@
       serverAddr = (if config.mods.services.k3s.init then "" else "https://${config.mods.services.k3s.clusterAddress}:6443");
       extraFlags = toString ([
        "--write-kubeconfig-mode \"0644\""
-       "--disable servicelb"
+       # "--disable servicelb"
        "--disable traefik"
        "--disable local-storage"
       ]);
