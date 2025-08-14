@@ -49,6 +49,10 @@
        "--disable local-storage"
       ]);
     };
+
+    systemd.services.k3s = {
+      path = [ pkgs.open-iscsi pkgs.util-linux ];
+    };
   };
 }
 
