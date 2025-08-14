@@ -30,9 +30,10 @@
   };
 
   config = lib.mkIf config.mods.services.k3s.enable {
+    # Iscsi is a prerequisite for running longhorn which is a distributed filesystem across all k3s nodes
     services.openiscsi = {
       enable = true;
-      name = "iqn.2020-08.org.linux-iscsi:${config.networking.hostName}";
+      name = "iqn.lab.k3s:${config.networking.hostName}";
     };
 
     services.k3s = {
