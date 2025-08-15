@@ -55,6 +55,7 @@
     };
 
     # Enable btrfs support
+    boot.kernelModules = [ "btrfs" ];
     boot.supportedFilesystems = [ "btrfs" ];
     
     # Ensure btrfs-progs is installed
