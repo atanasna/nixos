@@ -53,6 +53,14 @@
     systemd.services.k3s = {
       path = [ pkgs.openiscsi pkgs.util-linux ];
     };
+
+    # Enable btrfs support
+    boot.supportedFilesystems = [ "btrfs" ];
+    
+    # Ensure btrfs-progs is installed
+    environment.systemPackages = with pkgs; [
+      btrfs-progs
+    ];
   };
 }
 
