@@ -8,13 +8,13 @@
             name = "enp0s1";
             addresses = [
               { 
-                address = "192.168.66.12"; 
+                address = "10.7.0.52"; 
                 prefixLength = 24; 
               }
             ];
           }
         ];
-        gateway = "192.168.66.1";
+        gateway = "10.7.0.1";
         nameservers = [ "8.8.8.8" "4.4.4.4" ];
       };
       system = {

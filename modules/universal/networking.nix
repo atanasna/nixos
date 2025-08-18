@@ -67,7 +67,7 @@
     networking.nameservers = config.mods.universal.networking.nameservers;
 
     networking.hosts = {
-      "192.168.66.11" = ["homelab"];
+      "10.7.0.51" = ["homelab"];
     };
   };
 }
